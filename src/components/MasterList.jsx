@@ -10,6 +10,7 @@ export class MasterList extends React.Component {
     const {results, currentId, history} = this.props
 
     const route = id => {
+      currentId(id)
       history.push(`/character/${id}`)
     }
 

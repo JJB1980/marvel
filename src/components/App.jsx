@@ -1,13 +1,10 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { withRouter, Redirect } from 'react-router-dom'
 
 import Header from './Header'
 import MasterList from './MasterList'
 import Routes from '../routes'
 
-export class App extends React.Component {
+export default class App extends React.Component {
   render () {
     return <div id='App'>
       <Header/>
@@ -16,17 +13,3 @@ export class App extends React.Component {
     </div>
   }
 }
-
-function mapStateToProps (state) {
-  return {
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch)
-}
-
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App))
