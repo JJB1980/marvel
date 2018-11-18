@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "babel-plugin-transform-object-rest-spread",
+    "syntax-async-functions"
+  ]
+}
