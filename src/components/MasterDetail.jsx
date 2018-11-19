@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 import {getResults, getCurrentId, getFetching} from './'
+import List from './List'
 
 export class MasterDetail extends React.Component {
   render () {
@@ -19,20 +20,8 @@ export class MasterDetail extends React.Component {
       <div id='master-heading'>{name}</div>
       <div id='master-icon'><img src={`${thumbnail.path}.${thumbnail.extension}`}/></div>
       {description && <div id='master-description'>{description}</div>}
-      {comics.length &&
-        <div id='master-comics'><span>Comics</span><ul>
-          {comics.items.map(({name}, index) => {
-            return <li key={index}>{name}</li>
-          })}
-        </ul></div>
-      }
-      {series.length &&
-        <div id='master-series'><span>Series</span><ul>
-          {series.items.map(({name}, index) => {
-            return <li key={index}>{name}</li>
-          })}
-        </ul></div>
-      }
+      <List id='master-comics' title='Comics' items={comics.items}/>
+      <List id='master-series' title='Series' items={series.items}/>
     </div>
   }
 }
