@@ -13,12 +13,13 @@ export const Character = new Record({
   name: '',
   description: '',
   thumbnail: {},
-  comics: new List(),
-  series: new List()
+  comics: List(),
+  series: List()
 }, 'Character')
 
 export function loadResults (data) {
   const list = new List()
+
   return data.data.results.reduce((results, result) => {
     return results.push(new Character({
       ...result,

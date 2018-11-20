@@ -11,14 +11,23 @@ export class MasterDetail extends React.Component {
     const {results, match, fetching} = this.props
     const currentId = match.params.id
 
-    if (currentId === undefined || fetching || results.size === 0)
-      return null
+    if (currentId === undefined || fetching || results.size === 0) return null
 
-    const {name, thumbnail, description, comics, series} = results.get(currentId)
+    const character = results.find(({id}) => id.toString() === currentId)
+
+    if (!character) return null
+
+    const {
+      name,
+      thumbnail: {path, extension},
+      description,
+      comics,
+      series
+    } = character
 
     return <div id='master-detail'>
       <div id='master-heading'>{name}</div>
-      <div id='master-icon'><img src={`${thumbnail.path}.${thumbnail.extension}`}/></div>
+      <div id='master-icon'><img src={`${path}.${extension}`}/></div>
       {description && <div id='master-description'>{description}</div>}
       <List id='master-comics' title='Comics' items={comics}/>
       <List id='master-series' title='Series' items={series}/>

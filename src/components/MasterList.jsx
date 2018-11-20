@@ -16,8 +16,8 @@ export class MasterList extends React.Component {
 
     let resultsDom = null
     if (results.size) {
-      resultsDom = results.toJS().map(({name}, index) => {
-        return <div key={index} onClick={route.bind(null, index)}>
+      resultsDom = results.map(({name, id}, index) => {
+        return <div key={index} onClick={route.bind(null, id)}>
           {name}
         </div>
       })
