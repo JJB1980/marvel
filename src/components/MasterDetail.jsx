@@ -20,8 +20,8 @@ export class MasterDetail extends React.Component {
       <div id='master-heading'>{name}</div>
       <div id='master-icon'><img src={`${thumbnail.path}.${thumbnail.extension}`}/></div>
       {description && <div id='master-description'>{description}</div>}
-      <List id='master-comics' title='Comics' items={comics.items}/>
-      <List id='master-series' title='Series' items={series.items}/>
+      <List id='master-comics' title='Comics' items={comics}/>
+      <List id='master-series' title='Series' items={series}/>
     </div>
   }
 }

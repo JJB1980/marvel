@@ -3,7 +3,7 @@ import React from 'react'
 export default (props) => {
   const {items, id, title} = props
 
-  if (!items.length)
+  if (!items.size)
     return null
 
   return <div id={id}>
