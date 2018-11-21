@@ -2,7 +2,7 @@ import React from 'react'
 
 import {mounted} from '../utils'
 
-import App from '../../src/components/App'
+import App from '../../../src/components/App'
 
 describe('<App/>', () => {
   let wrapper = mounted(App)

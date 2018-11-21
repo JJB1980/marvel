@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
 
-import reducers from '../src/reducers'
+import reducers from '../../src/reducers'
 
 const enhancers = compose(applyMiddleware(thunk))
 const store = createStore(reducers, enhancers)
