@@ -13,12 +13,12 @@ chai.use(dirtyChai)
 global.expect = chai.expect
 global.sinon = sinon
 
-const { JSDOM } = jsdom
-const { document } = (new JSDOM('')).window
+const {JSDOM} = jsdom
+const {document} = (new JSDOM('')).window
 global.document = document
 
 // global.requestAnimationFrame = (cb) => {
 //   setTimeout(cb, 0)
 // }
 
-Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({adapter: new Adapter()})

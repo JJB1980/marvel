@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {mounted} from '../utils'
+import {mounted} from '../../utils'
 
 import App from '../../../src/components/App'
 
