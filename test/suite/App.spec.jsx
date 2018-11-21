@@ -1,12 +1,14 @@
-const {mount} = require('enzyme')
+import React from 'react'
 
-const App = require('../../src/components/App')
+import {mount, shallow} from 'enzyme'
 
-descibe('<App/>', () => {
+import App from '../../src/components/App'
+
+describe('<App/>', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(<App></App>)
+    wrapper = shallow(<App></App>)
   })
 
   it('should render', () => {
