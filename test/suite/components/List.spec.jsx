@@ -14,10 +14,10 @@ describe('<List/>', () => {
   }
 
   beforeEach(() => {
-    wrapper = shallow(<ListComponent items={props.items} title={props.title} id={props.id}/>)
+    wrapper = shallow(<ListComponent {...props}/>)
   })
 
-  it('should render', () => {
+  it('should render List component', () => {
     expect(wrapper.exists()).to.be.true()
   })
 
