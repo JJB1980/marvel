@@ -8,7 +8,7 @@ export default function Routes (props) {
     <Switch>
       <Route exact path='/' component={MasterDetail} />
       <Route exact path='/character/:id' component={MasterDetail} />
-      <Route nomatch component={() => <Box align='center'>404</Box>} />
+      <Route nomatch component={() => <div>404</div>} />
     </Switch>
   )
 }
