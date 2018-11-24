@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
@@ -8,10 +8,12 @@ import MagnifyIcon from 'mdi-react/MagnifyIcon'
 
 import {search, getSearch, newSearch, getFetching} from './'
 
-export class Header extends React.Component {
-  constructor (props) {
+type Props = {searchTerm : string, updateSearch : Function, fetching : boolean}
+
+export class Header extends Component<Props> {
+  constructor (props : Props) {
     super(props)
-    const search = (term) => {
+    const search : Function = (term : string) => {
       props.history.push('/')
       props.newSearch(term)
     }
@@ -19,9 +21,9 @@ export class Header extends React.Component {
   }
 
   render () {
-    const {searchTerm, updateSearch, fetching} = this.props
+    const {searchTerm, updateSearch, fetching} : Props = this.props
 
-    const update = (event) => {
+    const update : Function = (event : Object) => {
       updateSearch(event.target.value)
       this.doSearch(event.target.value)
     }

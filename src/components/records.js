@@ -5,11 +5,11 @@ export const ResultsState = new Record({
   fetching: false,
   error: null,
   search: '',
-  currentId: null
+  currentId: ''
 }, 'ResultsState')
 
 export const Character = new Record({
-  id: null,
+  id: '',
   name: '',
   description: '',
   thumbnail: {},

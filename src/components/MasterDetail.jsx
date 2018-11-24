@@ -8,8 +8,9 @@ import {List as ImmutableList} from 'immutable'
 
 import {getResults, getCurrentId, getFetching} from './'
 import List from './List'
+import {Character} from './records'
 
-type Props = {results : typeof ImmutableList, match: {params: {id : string}}, fetching : boolean}
+type Props = {results : ImmutableList, match: {params: {id : string}}, fetching : boolean}
 
 export class MasterDetail extends Component<Props> {
   render () {
@@ -17,7 +18,7 @@ export class MasterDetail extends Component<Props> {
 
     if (currentId === undefined || fetching || results.size === 0) return null
 
-    const character = results.find(({id}) => id.toString() === currentId)
+    const character : Character = results.find(({id}) => id.toString() === currentId)
 
     if (!character) return null
 
@@ -27,13 +28,7 @@ export class MasterDetail extends Component<Props> {
       description,
       comics,
       series
-    } : {
-      name : string,
-      thumbnail: {path : string, extension : string},
-      description : string,
-      comics : typeof ImmutableList,
-      series : typeof ImmutableList
-    } = character
+    } : Character = character
 
     return <div id='master-detail'>
       <div id='master-heading'>{name}</div>

@@ -1,9 +1,11 @@
+// @flow
+
 import React from 'react'
 
 import {List} from 'immutable'
 
-export default (props) => {
-  const {items, id, title} : {items : typeof List, id: string, title : string} = props
+export default (props : Object) => {
+  const {items, id, title} : {items : List, id: string, title : string} = props
 
   if (!items || !items.size) return null
 
