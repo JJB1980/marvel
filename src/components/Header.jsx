@@ -52,7 +52,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
     updateSearch: search,
-    newSearch: newSearch,
+    newSearch: newSearch
   }, dispatch)
 }
 

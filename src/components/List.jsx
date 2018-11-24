@@ -1,10 +1,11 @@
 import React from 'react'
 
-export default (props) => {
-  const {items, id, title} = props
+import {List} from 'immutable'
 
-  if (!items || !items.size)
-    return null
+export default (props) => {
+  const {items, id, title} : {items : typeof List, id: string, title : string} = props
+
+  if (!items || !items.size) return null
 
   return <div id={id}>
     <span>{title}</span>

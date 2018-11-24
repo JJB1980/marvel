@@ -1,0 +1,22 @@
+[ignore]
+.*/node_modules/.*
+.*/flow-typed/.*
+
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+
+[options]
+module.name_mapper='^~/\(.*\)$' -> '<PROJECT_ROOT>/\1'
+module.name_mapper='\(redux-mock-store\|react-router-dom\|react-redux\|redux-thunk\|redux\|immutable\|babel-polyfill\|date-fns\|enzyme-adapter-react-16\|enzyme\|dirty-chai\|chai-enzyme\|sinon-chai\|chai\|sinon\|jsdom\|lodash\)' -> '<PROJECT_ROOT>/src/defaultFlowType.js'
+module.name_mapper='.*\(.css\|.scss\)' -> '<PROJECT_ROOT>/src/defaultFlowType.js'
+include_warnings=true
+module.system=haste
+
+[strict]
+
+[untyped]
+(\/node_modules\/)

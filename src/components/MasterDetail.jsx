@@ -1,15 +1,19 @@
-import React from 'react'
+// @flow
+
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import {List as ImmutableList} from 'immutable'
 
 import {getResults, getCurrentId, getFetching} from './'
 import List from './List'
 
-export class MasterDetail extends React.Component {
+type Props = {results : typeof ImmutableList, match: {params: {id : string}}, fetching : boolean}
+
+export class MasterDetail extends Component<Props> {
   render () {
-    const {results, match, fetching} = this.props
-    const currentId = match.params.id
+    const {results, match: {params: {id: currentId}}, fetching} : Props = this.props
 
     if (currentId === undefined || fetching || results.size === 0) return null
 
@@ -23,6 +27,12 @@ export class MasterDetail extends React.Component {
       description,
       comics,
       series
+    } : {
+      name : string,
+      thumbnail: {path : string, extension : string},
+      description : string,
+      comics : typeof ImmutableList,
+      series : typeof ImmutableList
     } = character
 
     return <div id='master-detail'>

@@ -1,4 +1,4 @@
-import { List, Record } from 'immutable'
+import {List, Record} from 'immutable'
 
 export const ResultsState = new Record({
   results: List(),

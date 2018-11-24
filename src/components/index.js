@@ -9,41 +9,41 @@ const CURRENT_ID = `${NS}CURRENT_ID`
 
 const initialState = new ResultsState()
 
-export default function reducer (state = initialState, { type, payload }) {
+export default function reducer (state = initialState, {type, payload}) {
   switch (type) {
-    case RESULTS:
-      return state.set('results', loadResults(payload))
+  case RESULTS:
+    return state.set('results', loadResults(payload))
 
-    case UPDATE_SEARCH:
-      return state.set('search', payload)
+  case UPDATE_SEARCH:
+    return state.set('search', payload)
 
-    case FETCHING:
-      return state.set('fetching', payload)
+  case FETCHING:
+    return state.set('fetching', payload)
 
-    case CURRENT_ID:
-      return state.set('currentId', payload)
+  case CURRENT_ID:
+    return state.set('currentId', payload)
 
-    default:
-      return state
+  default:
+    return state
   }
 }
 
 // actions ---------
 
 export function results (data) {
-  return { type: RESULTS, payload: data }
+  return {type: RESULTS, payload: data}
 }
 
 export function search (term) {
-  return { type: UPDATE_SEARCH, payload: term }
+  return {type: UPDATE_SEARCH, payload: term}
 }
 
 export function fetching (how) {
-  return { type: FETCHING, payload: how }
+  return {type: FETCHING, payload: how}
 }
 
 export function currentId (id) {
-  return { type: CURRENT_ID, payload: id }
+  return {type: CURRENT_ID, payload: id}
 }
 
 // selectors --------
@@ -75,8 +75,7 @@ export function initialize () {
 export function newSearch (term = '') {
   return async (dispatch, getState) => {
     let url = 'http://gateway.marvel.com/v1/public/characters?limit=100&apikey=ddf365a3803a6e76f421e7f4d2794fef'
-    if (term)
-      url += `&nameStartsWith=${term}`;
+    if (term) { url += `&nameStartsWith=${term}` }
 
     dispatch(fetching(true))
     dispatch(currentId(null))

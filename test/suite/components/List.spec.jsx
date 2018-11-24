@@ -7,8 +7,9 @@ import ListComponent from '../../../src/components/List'
 
 describe('<List/>', () => {
   let wrapper
+
   const props = {
-    items: new List([{name: 'a',}, {name: 'b'}]),
+    items: new List([{name: 'a'}, {name: 'b'}]),
     title: 'test',
     id: 'id'
   }
