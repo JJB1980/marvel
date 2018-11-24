@@ -1,0 +1,33 @@
+$componentName: 'master-list';
+
+##{$componentName} {
+  background-color: #989898;
+  position: relative;
+  top: 60px;
+  width: 200px;
+  padding: 0px;
+
+  div {
+    box-sizing: border-box;
+    color: white;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-family: "Arial Black", Gadget, sans-serif;
+
+    &:hover {
+      background-color: #888888;
+    }
+  }
+}
+
+/* somewhat responsive */
+@media all and (max-width: 550px) {
+  ##{$componentName} {
+    margin-top: 20px;
+    height: 45vh;
+    width: 100%;
+    overflow: scroll;
+  }
+}

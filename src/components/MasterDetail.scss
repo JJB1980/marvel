@@ -1,0 +1,67 @@
+
+$componentName: 'master';
+
+##{$componentName}-detail {
+  width: 500px;
+  color: white;
+  background: transparent;
+  height: 70vh;
+  overflow: scroll;
+  position: fixed;
+  left: 210px;
+  top: 100px;
+  font-family: "Arial";
+}
+
+##{$componentName}-heading {
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+
+##{$componentName}-icon {
+  float: right;
+  position: relative;
+  top: -20px;
+  margin: 5px;
+}
+##{$componentName}-icon img {
+  border-radius: 40px;
+  width: 80px;
+  height: 80px;
+}
+
+##{$componentName}-description {
+  padding: 5px;
+}
+
+##{$componentName}-comics {
+  padding: 5px;
+  width: 195px;
+  float: left;
+}
+##{$componentName}-comics span {
+  font-weight: bold;
+}
+
+##{$componentName}-series {
+  padding: 5px;
+  width: 195px;
+  float: left;
+}
+##{$componentName}-series span {
+  font-weight: bold;
+}
+
+
+/* somewhat responsive */
+@media all and (max-width: 550px) {
+  ##{$componentName}-detail {
+    position: relative;
+    height: 45vh;
+    width: 100%;
+    left: 0px;
+    top: 60px;
+    overflow: scroll;
+  }
+}

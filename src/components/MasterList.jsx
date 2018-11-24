@@ -8,7 +8,15 @@ import {List} from 'immutable'
 
 import {getResults, currentId} from './'
 
-type Props = {results : List, currentId : Function, history : Object}
+import './MasterList.scss'
+
+const componentName = 'master-list'
+
+type Props = {
+  results : List,
+  currentId : Function,
+  history : Object
+}
 
 export class MasterList extends Component<Props> {
   render () {
@@ -28,7 +36,7 @@ export class MasterList extends Component<Props> {
       })
     }
 
-    return <div id='master-list'>
+    return <div id={`${componentName}`}>
       {resultsDom}
     </div>
   }

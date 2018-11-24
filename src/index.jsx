@@ -13,6 +13,7 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 import App from './components/App'
 import {initialize} from './components'
+
 import './styles.scss'
 
 const composeEnhancers : Function = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

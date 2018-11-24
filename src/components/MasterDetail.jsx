@@ -10,7 +10,19 @@ import {getResults, getCurrentId, getFetching} from './'
 import List from './List'
 import {Character} from './records'
 
-type Props = {results : ImmutableList, match: {params: {id : string}}, fetching : boolean}
+import './MasterDetail.scss'
+
+const componentName = 'master'
+
+type Props = {
+  results : ImmutableList,
+  match: {
+    params: {
+      id : string
+    }
+  },
+  fetching : boolean
+}
 
 export class MasterDetail extends Component<Props> {
   render () {
@@ -30,12 +42,12 @@ export class MasterDetail extends Component<Props> {
       series
     } : Character = character
 
-    return <div id='master-detail'>
-      <div id='master-heading'>{name}</div>
-      <div id='master-icon'><img src={`${path}.${extension}`}/></div>
-      {description && <div id='master-description'>{description}</div>}
-      <List id='master-comics' title='Comics' items={comics}/>
-      <List id='master-series' title='Series' items={series}/>
+    return <div id={`${componentName}-detail`}>
+      <div id={`${componentName}-heading`}>{name}</div>
+      <div id={`${componentName}-icon`}><img src={`${path}.${extension}`}/></div>
+      {description && <div id={`${componentName}-description`}>{description}</div>}
+      <List id={`${componentName}-comics`} title='Comics' items={comics}/>
+      <List id={`${componentName}-series`} title='Series' items={series}/>
     </div>
   }
 }

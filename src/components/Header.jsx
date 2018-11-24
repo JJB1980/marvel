@@ -8,7 +8,16 @@ import MagnifyIcon from 'mdi-react/MagnifyIcon'
 
 import {search, getSearch, newSearch, getFetching} from './'
 
-type Props = {searchTerm : string, updateSearch : Function, fetching : boolean}
+import './Header.scss'
+
+const componentName = 'heading'
+
+type Props = {
+  searchTerm : string,
+  updateSearch : Function,
+  newSearch : Function,
+  fetching : boolean
+}
 
 export class Header extends Component<Props> {
   constructor (props : Props) {
@@ -28,10 +37,10 @@ export class Header extends Component<Props> {
       this.doSearch(event.target.value)
     }
 
-    return <div id='header'>
-      <span id='heading-main'>MARVEL</span>
-      <span id='heading-sub'> Explorer</span>
-      <span id='heading-search'>
+    return <div id={`${componentName}`}>
+      <span id={`${componentName}-main`}>MARVEL</span>
+      <span id={`${componentName}-sub`}> Explorer</span>
+      <span id={`${componentName}-search`}>
         <MagnifyIcon/>
         <input value={searchTerm} onChange={update} placeholder='search...'/>
       </span>
