@@ -7,10 +7,11 @@ import {withRouter} from 'react-router-dom'
 import {List} from 'immutable'
 
 import {getResults, currentId} from './'
+import {projectName} from '../config'
 
 import './MasterList.scss'
 
-const componentName = 'master-list'
+const componentName = `${projectName}-master-list`
 
 type Props = {
   results : List,

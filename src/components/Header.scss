@@ -1,4 +1,6 @@
-$componentName: 'heading';
+@import '../globals.scss';
+
+$componentName: $projectName+'-heading';
 
 ##{$componentName} {
   background-color: #FFFFFF;

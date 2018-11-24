@@ -7,10 +7,11 @@ import {debounce} from 'lodash'
 import MagnifyIcon from 'mdi-react/MagnifyIcon'
 
 import {search, getSearch, newSearch, getFetching} from './'
+import {projectName} from '../config'
 
 import './Header.scss'
 
-const componentName = 'heading'
+const componentName = `${projectName}-heading`
 
 type Props = {
   searchTerm : string,

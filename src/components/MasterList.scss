@@ -1,4 +1,6 @@
-$componentName: 'master-list';
+@import '../globals.scss';
+
+$componentName: $projectName+'-master-list';
 
 ##{$componentName} {
   background-color: #989898;

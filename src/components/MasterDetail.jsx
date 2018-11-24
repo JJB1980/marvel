@@ -9,10 +9,11 @@ import {List as ImmutableList} from 'immutable'
 import {getResults, getCurrentId, getFetching} from './'
 import List from './List'
 import {Character} from './records'
+import {projectName} from '../config'
 
 import './MasterDetail.scss'
 
-const componentName = 'master'
+const componentName = `${projectName}-master`
 
 type Props = {
   results : ImmutableList,

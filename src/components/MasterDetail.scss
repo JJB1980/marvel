@@ -1,5 +1,6 @@
+@import '../globals.scss';
 
-$componentName: 'master';
+$componentName: $projectName+'-master';
 
 ##{$componentName}-detail {
   width: 500px;
