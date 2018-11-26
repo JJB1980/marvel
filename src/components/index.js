@@ -6,6 +6,7 @@ const RESULTS = `${NS}RESULTS`
 const UPDATE_SEARCH = `${NS}UPDATE_SEARCH`
 const FETCHING = `${NS}FETCHING`
 const CURRENT_ID = `${NS}CURRENT_ID`
+const THEME = `${NS}THEME`
 
 const initialState = new ResultsState()
 
@@ -22,6 +23,9 @@ export default function reducer (state = initialState, {type, payload}) {
 
   case CURRENT_ID:
     return state.set('currentId', payload)
+
+  case THEME:
+    return state.set('theme', payload)
 
   default:
     return state
@@ -46,6 +50,10 @@ export function currentId (id) {
   return {type: CURRENT_ID, payload: id}
 }
 
+export function theme (theme) {
+  return {type: THEME, payload: theme}
+}
+
 // selectors --------
 
 export function getResults (state) {
@@ -64,11 +72,16 @@ export function getCurrentId (state) {
   return state.components.currentId
 }
 
+export function getTheme (state) {
+  return state.components.theme
+}
+
 // thunks -----------
 
 export function initialize () {
-  return (dispatch) => {
+  return (dispatch, _, {theme: theTheme}) => {
     dispatch(newSearch())
+    dispatch(theme(theTheme))
   }
 }
 

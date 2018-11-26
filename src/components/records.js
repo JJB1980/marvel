@@ -5,6 +5,7 @@ export const ResultsState = new Record({
   fetching: false,
   error: null,
   search: '',
+  theme: '',
   currentId: ''
 }, 'ResultsState')
 

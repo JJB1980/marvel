@@ -13,11 +13,11 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 import App from './components/App'
 import {initialize} from './components'
-
-import './styles.scss'
+import services from './services'
 
 const composeEnhancers : Function = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const enhancers : Function = composeEnhancers(applyMiddleware(thunk))
+const thunkWithExtraArgument = thunk.withExtraArgument(services)
+const enhancers : Function = composeEnhancers(applyMiddleware(thunkWithExtraArgument))
 const store : Object = createStore(reducer, enhancers)
 
 store.dispatch(initialize())
