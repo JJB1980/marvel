@@ -1,6 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 
@@ -29,46 +29,40 @@ module.exports = function (_, {mode}) {
 
   plugins.push(
     new MiniCssExtractPlugin({
-      filename: 'style.css'
+      filename: isProduction ? 'style.[hash].css' : 'style.css'
     })
   )
 
+  let templateArgs
   if (!isProduction) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
-
-    plugins.push(new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      inject: 'body',
-      minify: false,
-      templateParameters: {
-        theme,
-        environment: mode
-      }
-    }))
-
-    rules.push(
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: 'html-loader',
-      //       options: {minimize: true}
-      //     }
-      //   ]
-      // },
-      {
-        test: /\.html$/,
-        loader: 'mustache-loader'
-      }
-    )
+    templateArgs = {
+      theme,
+      environment: mode
+    }
   } else {
-    plugins.push(
-      CopyWebpackPlugin([
-        {from: './src/index-prod.html', to: 'index.html'}
-      ])
-    )
+    templateArgs = {
+      theme: '{{theme}}',
+      environment: '{{environment}}'
+    }
   }
+
+  plugins.push(new HtmlWebPackPlugin({
+    template: './src/index.html',
+    filename: './index.html',
+    inject: 'body',
+    minify: false,
+    templateParameters: {
+      ...templateArgs
+    }
+  }))
+
+  rules.push(
+    {
+      test: /\.html$/,
+      loader: 'mustache-loader'
+    }
+  )
 
   return {
     entry: {
@@ -76,7 +70,7 @@ module.exports = function (_, {mode}) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'main.js'
+      filename: isProduction ? 'main.[chunkhash].js' : 'main.js'
     },
     module: {
       rules

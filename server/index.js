@@ -3,9 +3,11 @@ const path = require('path')
 const morgan = require('morgan')
 const compression = require('compression')
 
+const cwd = process.cwd()
+
 const exphbs = require('express-handlebars').create({
-  layoutsDir: path.join(__dirname, '../dist'),
-  partialsDir: path.join(__dirname, '../dist'),
+  layoutsDir: path.join(cwd, 'dist'),
+  partialsDir: path.join(cwd, 'dist'),
   defaultLayout: 'index',
   extname: 'html'
 })
@@ -13,11 +15,11 @@ const exphbs = require('express-handlebars').create({
 const app = express()
 
 app.use(compression())
-app.use(express.static(path.join(process.cwd(), 'dist')))
+app.use(express.static(path.join(cwd, 'dist')))
 app.use(morgan('tiny'))
 app.enable('view cache')
 
-app.set('views', path.resolve(process.cwd(), 'dist'))
+app.set('views', path.resolve(cwd, 'dist'))
 app.engine('html', exphbs.engine)
 app.set('view engine', 'html')
 
