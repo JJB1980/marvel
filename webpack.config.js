@@ -70,7 +70,7 @@ module.exports = function (_, {mode}) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: isProduction ? 'main.[chunkhash].js' : 'main.js'
+      filename: isProduction ? '[name].[chunkhash].js' : 'main.js'
     },
     module: {
       rules
@@ -78,6 +78,11 @@ module.exports = function (_, {mode}) {
     plugins,
     resolve: {
       extensions: ['*', '.js', '.jsx', '.scss']
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
     },
     devtool: 'source-map',
     devServer: {

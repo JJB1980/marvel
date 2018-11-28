@@ -23,8 +23,6 @@ app.set('views', path.resolve(cwd, 'dist'))
 app.engine('html', exphbs.engine)
 app.set('view engine', 'html')
 
-app.use(express.static('dist'))
-
 const site = process.env.SITE
 const environment = process.env.NODE_ENV || 'production'
 
