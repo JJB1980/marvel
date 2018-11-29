@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
@@ -33,6 +34,8 @@ module.exports = function (_, {mode}) {
     })
   )
 
+  if (process.env.ANALYZE) plugins.push(new BundleAnalyzerPlugin())
+
   let templateArgs
   if (!isProduction) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -43,7 +46,8 @@ module.exports = function (_, {mode}) {
   } else {
     templateArgs = {
       theme: '{{theme}}',
-      environment: '{{environment}}'
+      environment: '{{environment}}',
+      renderedHtml: '{{renderedHtml}}'
     }
   }
 

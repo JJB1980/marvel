@@ -3,7 +3,9 @@
     "dev": "./node_modules/.bin/webpack-dev-server --mode=development",
     "build": "rm -rf ./dist && ./node_modules/.bin/webpack --mode=production",
     "test": "./node_modules/.bin/flow . && ./node_modules/.bin/eslint './**/*.js*' && ./node_modules/.bin/mocha './test/suite/**/*.spec.*'",
-    "coverage": "./node_modules/.bin/nyc npm test"
+    "coverage": "./node_modules/.bin/nyc npm test",
+    "start": "node ./server",
+    "analyze": "ANALYZE=1 ./node_modules/.bin/webpack --mode=production"
   },
   "nyc": {
     "extension": [
@@ -80,6 +82,7 @@
     "redux-mock-store": "^1.5.3",
     "sinon": "^7.1.1",
     "style-loader": "^0.23.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-dev-server": "^3.1.10"
   }
 }

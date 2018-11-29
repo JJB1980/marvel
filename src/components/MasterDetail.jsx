@@ -4,10 +4,10 @@ import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {List as ImmutableList} from 'immutable'
+import {List} from 'immutable'
 
 import {getResults, getCurrentId, getFetching} from './'
-import List from './List'
+import ComicsSeriesList from './List'
 import {Character} from './records'
 import {projectName} from '../config'
 
@@ -16,7 +16,7 @@ import './MasterDetail.scss'
 const componentName = `${projectName}-master`
 
 type Props = {
-  results : ImmutableList,
+  results : List,
   match: {
     params: {
       id : string
@@ -47,8 +47,8 @@ export class MasterDetail extends Component<Props> {
       <div id={`${componentName}-heading`}>{name}</div>
       <div id={`${componentName}-icon`}><img src={`${path}.${extension}`}/></div>
       {description && <div id={`${componentName}-description`}>{description}</div>}
-      <List id={`${componentName}-comics`} title='Comics' items={comics}/>
-      <List id={`${componentName}-series`} title='Series' items={series}/>
+      <ComicsSeriesList id={`${componentName}-comics`} title='Comics' items={comics}/>
+      <ComicsSeriesList id={`${componentName}-series`} title='Series' items={series}/>
     </div>
   }
 }

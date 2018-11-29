@@ -28,7 +28,7 @@ const environment = process.env.NODE_ENV || 'production'
 
 app.get('*', function (req, res) {
   const host = req.hostname.split('.')[0]
-  res.render('index', {theme: site || host, environment})
+  res.render('index', {theme: site || host, environment, renderedHtml: ''})
 })
 
 const port = process.env.PORT || 80
