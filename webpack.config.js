@@ -1,7 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 
@@ -33,6 +33,13 @@ module.exports = function (_, {mode}) {
       filename: isProduction ? 'style.[hash].css' : 'style.css'
     })
   )
+
+  plugins.push(new CopyWebpackPlugin([
+    {
+      from: './assets/**/*',
+      to: './'
+    }
+  ]))
 
   if (process.env.ANALYZE) plugins.push(new BundleAnalyzerPlugin())
 
