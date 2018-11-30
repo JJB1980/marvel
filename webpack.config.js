@@ -48,13 +48,16 @@ module.exports = function (_, {mode}) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
     templateArgs = {
       theme,
-      environment: mode
+      environment: mode,
+      name: 'Dev',
+      renderedHtml: ''
     }
   } else {
     templateArgs = {
       theme: '{{theme}}',
       environment: '{{environment}}',
-      renderedHtml: '{{renderedHtml}}'
+      renderedHtml: '{{renderedHtml}}',
+      name: '{{name}}'
     }
   }
 

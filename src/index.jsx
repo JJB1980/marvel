@@ -12,7 +12,7 @@ import thunk from 'redux-thunk'
 
 import reducer from './reducers'
 import App from './components/App'
-import {initialize} from './components'
+import initialize from './initialise'
 import services from './services'
 
 const composeEnhancers : Function = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

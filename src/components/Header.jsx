@@ -6,8 +6,9 @@ import {debounce} from 'lodash'
 
 import MagnifyIcon from 'mdi-react/MagnifyIcon'
 
-import {search, getSearch, newSearch, getFetching} from './'
+import {search, getSearch, newSearch} from './'
 import {projectName} from '../config'
+import {isFetching} from '../api'
 
 import './Header.scss'
 
@@ -57,7 +58,7 @@ export class Header extends Component<Props> {
 function mapStateToProps (state) {
   return {
     searchTerm: getSearch(state),
-    fetching: getFetching(state)
+    fetching: isFetching(state)
   }
 }
 

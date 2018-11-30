@@ -1,5 +1,7 @@
 import {ResultsState, loadResults} from './records'
 
+import {fetchApi} from '../api'
+
 const NS = 'APP_'
 
 const RESULTS = `${NS}RESULTS`
@@ -88,15 +90,10 @@ export function initialize () {
 export function newSearch (term = '') {
   return async (dispatch, getState) => {
     let url = 'http://gateway.marvel.com/v1/public/characters?limit=100&apikey=ddf365a3803a6e76f421e7f4d2794fef'
-    if (term) { url += `&nameStartsWith=${term}` }
+    if (term) url += `&nameStartsWith=${term}`
 
-    dispatch(fetching(true))
-    dispatch(currentId(null))
+    const data = await dispatch(fetchApi({url}))
 
-    const response = await fetch(url)
-    const data = await response.json()
-
-    dispatch(fetching(false))
     dispatch(results(data))
   }
 }

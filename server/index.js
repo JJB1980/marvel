@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
 const compression = require('compression')
+const fs = require('fs')
 
 const cwd = process.cwd()
 
@@ -26,9 +27,12 @@ app.set('view engine', 'html')
 const site = process.env.SITE
 const environment = process.env.NODE_ENV || 'production'
 
+const config = {}
+
 app.get('*', function (req, res) {
   const host = req.hostname.split('.')[0]
-  res.render('index', {theme: site || host, environment, renderedHtml: ''})
+  const cfg = config[host] || {name: 'test'}
+  res.render('index', {theme: site || host, environment, renderedHtml: '', name: cfg.name})
 })
 
 const port = process.env.PORT || 80
@@ -36,3 +40,15 @@ const port = process.env.PORT || 80
 app.listen(port, function () {
   console.log('Listening on ' + port)
 })
+
+function acquireConfig () {
+  const configs = fs.readdirSync('./sites')
+  configs.forEach(config => {
+    if (fs.lstatSync(path.resolve('./sites', config)).isDirectory()) {
+      const json = JSON.parse(fs.readFileSync(path.resolve('./sites', config, 'config.json')))
+      config[config] = json
+    }
+  })
+}
+
+acquireConfig()
