@@ -4,6 +4,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
+const fs = require('fs')
 
 module.exports = function (_, {mode}) {
   const theme = process.env.SITE || 'default'
@@ -28,28 +29,37 @@ module.exports = function (_, {mode}) {
     }
   ]
 
+  const copyRules = [{
+    from: './assets/**/*',
+    to: './'
+  }]
+
   plugins.push(
     new MiniCssExtractPlugin({
       filename: isProduction ? 'style.[hash].css' : 'style.css'
     })
   )
 
-  plugins.push(new CopyWebpackPlugin([
-    {
-      from: './assets/**/*',
-      to: './'
-    }
-  ]))
-
   if (process.env.ANALYZE) plugins.push(new BundleAnalyzerPlugin())
 
   let templateArgs
   if (!isProduction) {
     plugins.push(new webpack.HotModuleReplacementPlugin())
+
+    const configs = fs.readdirSync('./sites')
+    configs.forEach(cfg => {
+      if (fs.lstatSync(path.resolve('./sites', cfg)).isDirectory()) {
+        copyRules.push({
+          from: path.resolve('./sites', cfg, 'assets'),
+          to: './'
+        })
+      }
+    })
+
     templateArgs = {
       theme,
       environment: mode,
-      name: 'Dev',
+      name: 'DevMode',
       renderedHtml: ''
     }
   } else {
@@ -60,6 +70,8 @@ module.exports = function (_, {mode}) {
       name: '{{name}}'
     }
   }
+
+  plugins.push(new CopyWebpackPlugin(copyRules))
 
   plugins.push(new HtmlWebPackPlugin({
     template: './src/index.html',

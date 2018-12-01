@@ -11,6 +11,7 @@ const STATUS = `${NS}STATUS`
 const initialState = new ApiState()
 
 const STATUS_FETCHING = 'fetching'
+const STATUS_FETCHED = 'fetched'
 
 export default function reducer (state = initialState, {type, payload}) {
   switch (type) {
@@ -31,8 +32,8 @@ export function endpoint (data) {
   return {type: ENDPOINT, payload: data}
 }
 
-export function fetchStatus (data) {
-  return {type: STATUS, payload: data}
+export function fetchStatus (status) {
+  return {type: STATUS, payload: status}
 }
 
 // selectors --------
@@ -58,12 +59,12 @@ export function fetchApi ({method = 'GET', api, data = {}, url = null}) {
     return new Promise(async (resolve, reject) => {
       let apiUrl = url || path.resolve(getEndpoint(getState()), api)
 
-      dispatch(fetchStatus('fetching'))
+      dispatch(fetchStatus(STATUS_FETCHING))
 
       const response = await fetch(apiUrl, {method, body: method !== 'GET' ? data : null})
       const result = await response.json()
 
-      dispatch(fetchStatus('fetched'))
+      dispatch(fetchStatus(STATUS_FETCHED))
 
       resolve(result)
     })

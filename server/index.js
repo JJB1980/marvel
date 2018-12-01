@@ -31,8 +31,8 @@ const config = {}
 
 app.get('*', function (req, res) {
   const host = req.hostname.split('.')[0]
-  const cfg = config[host] || {name: 'test'}
-  res.render('index', {theme: site || host, environment, renderedHtml: '', name: cfg.name})
+  const {name} = config[host] || {name: 'test'}
+  res.render('index', {theme: site || host, environment, renderedHtml: '', name: name})
 })
 
 const port = process.env.PORT || 80
@@ -43,10 +43,10 @@ app.listen(port, function () {
 
 function acquireConfig () {
   const configs = fs.readdirSync('./sites')
-  configs.forEach(config => {
-    if (fs.lstatSync(path.resolve('./sites', config)).isDirectory()) {
-      const json = JSON.parse(fs.readFileSync(path.resolve('./sites', config, 'config.json')))
-      config[config] = json
+  configs.forEach(cfg => {
+    if (fs.lstatSync(path.resolve('./sites', cfg)).isDirectory()) {
+      const json = JSON.parse(fs.readFileSync(path.resolve('./sites', cfg, 'config.json')))
+      config[cfg] = json
     }
   })
 }
