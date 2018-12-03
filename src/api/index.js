@@ -55,28 +55,30 @@ export function initialize () {
 
 const mocks = {
   'default': {timeout: 0, result: {}, enabled: true}
-  // 'test': require('./somefile')
+  // '/some/endpoint': require('./somefile')
 }
 
 export function fetchApi ({method = 'GET', api = 'default', data = {}, url = null}) {
   return (dispatch, getState, {window: {setTimeout}}) => {
     return new Promise(async (resolve, reject) => {
-      let apiUrl = url || `${getEndpoint(getState())}${api}`
-
       dispatch(fetchStatus(STATUS_FETCHING))
 
       let timeout = 0
       let result = {}
       let enabled = true
+
       if (!url) {
         const mock = mocks[api]
-        result = mock.result
-        timeout = mock.timeout
+
+        result = mock.result || {}
+        timeout = mock.timeout || 0
         enabled = mock.enabled
       }
 
       if (enabled) {
+        let apiUrl = url || `${getEndpoint(getState())}${api}`
         const response = await fetch(apiUrl, {method, body: method !== 'GET' ? data : null})
+
         result = await response.json()
       }
 
