@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 
-import MasterDetail from './components/MasterDetail'
+import MasterDetail from './master/MasterDetail'
 
 export default function Routes (props) {
   return (

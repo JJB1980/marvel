@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component} from 'react'
+import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
@@ -11,7 +11,7 @@ import {projectName} from '../config'
 
 import './MasterList.scss'
 
-const componentName = `${projectName}-master-list`
+const componentName : string = `${projectName}-master-list`
 
 type Props = {
   results : List,
@@ -19,28 +19,26 @@ type Props = {
   history : Object
 }
 
-export class MasterList extends Component<Props> {
-  render () {
-    const {results, currentId, history} = this.props
+export function MasterList (props : Props) {
+  const {results, currentId, history} : Props = props
 
-    const route = (id : string) => {
-      currentId(id)
-      history.push(`/character/${id}`)
-    }
-
-    let resultsDom : ?Object = null
-    if (results.size) {
-      resultsDom = results.map(({name, id}, index) => {
-        return <div key={index} onClick={route.bind(null, id)}>
-          {name}
-        </div>
-      })
-    }
-
-    return <div id={`${componentName}`}>
-      {resultsDom}
-    </div>
+  const route = (id : string) => {
+    currentId(id)
+    history.push(`/character/${id}`)
   }
+
+  let resultsDom : ?Object = null
+  if (results.size) {
+    resultsDom = results.map(({name, id}, index) => {
+      return <div key={index} onClick={route.bind(null, id)}>
+        {name}
+      </div>
+    })
+  }
+
+  return <div id={`${componentName}`}>
+    {resultsDom}
+  </div>
 }
 
 function mapStateToProps (state) {

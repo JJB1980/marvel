@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux'
 
-import components from './components'
+import master from './master'
 import api from './api'
 
 export default combineReducers({
-  components,
+  master,
   api
 })

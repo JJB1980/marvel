@@ -1,5 +1,7 @@
+$main-colour: blue;
+
 #marvel-theme {
-  #marvel-heading-main {
-    background-color: blue;
+  #marvel-heading__main {
+    background-color: $main-colour;
   }
 }
