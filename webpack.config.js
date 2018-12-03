@@ -36,7 +36,7 @@ module.exports = function (_, {mode}) {
 
   plugins.push(
     new MiniCssExtractPlugin({
-      filename: isProduction ? 'style.[hash].css' : 'style.css'
+      filename: isProduction ? 'assets/style.[hash].css' : 'style.css'
     })
   )
 
@@ -48,8 +48,8 @@ module.exports = function (_, {mode}) {
 
     const configs = fs.readdirSync('./sites')
     configs.forEach(cfg => {
-      if (fs.lstatSync(path.resolve('./sites', cfg)).isDirectory()) {
-        copyRules.push({
+      if (fs.existsSync(path.resolve('./sites', cfg, 'assets'))) {
+         copyRules.push({
           from: path.resolve('./sites', cfg, 'assets'),
           to: './'
         })
@@ -96,7 +96,7 @@ module.exports = function (_, {mode}) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: isProduction ? '[name].[chunkhash].js' : 'main.js'
+      filename: isProduction ? 'assets/[name].[chunkhash].js' : 'main.js'
     },
     module: {
       rules

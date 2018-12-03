@@ -16,7 +16,8 @@ const exphbs = require('express-handlebars').create({
 const app = express()
 
 app.use(compression())
-app.use(express.static(path.join(cwd, 'dist')))
+app.use('/assets/', express.static(path.join(cwd, 'dist', 'assets')))
+app.use(express.static(path.join(cwd, 'dist', 'assets')))
 app.use(morgan('tiny'))
 app.enable('view cache')
 
@@ -32,6 +33,7 @@ const config = {}
 app.get('*', function (req, res) {
   const host = req.hostname.split('.')[0]
   const {name} = config[host] || {name: 'test'}
+  console.log(host, name)
   res.render('index', {theme: site || host, environment, renderedHtml: '', name: name})
 })
 
