@@ -49,7 +49,7 @@ module.exports = function (_, {mode}) {
     const configs = fs.readdirSync('./sites')
     configs.forEach(cfg => {
       if (fs.existsSync(path.resolve('./sites', cfg, 'assets'))) {
-         copyRules.push({
+        copyRules.push({
           from: path.resolve('./sites', cfg, 'assets'),
           to: './'
         })
