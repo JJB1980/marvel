@@ -7,7 +7,7 @@ const webpack = require('webpack')
 const fs = require('fs')
 
 module.exports = function (_, {mode}) {
-  const theme = process.env.SITE || 'default'
+  const theme = process.env.SITE || 'localhost'
   const isProduction = mode === 'production'
 
   const plugins = []
@@ -48,7 +48,7 @@ module.exports = function (_, {mode}) {
 
     const configs = fs.readdirSync('./sites')
     configs.forEach(cfg => {
-      if (fs.lstatSync(path.resolve('./sites', cfg)).isDirectory()) {
+      if (fs.existsSync(path.resolve('./sites', cfg, 'assets'))) {
         copyRules.push({
           from: path.resolve('./sites', cfg, 'assets'),
           to: './'
