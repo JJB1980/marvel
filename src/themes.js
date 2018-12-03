@@ -1,3 +1,12 @@
 import './styles.scss'
-import '../sites/localhost/styles.scss'
-import '../sites/marvel/styles.scss'
+
+export function initialize (theme) {
+  switch (theme) {
+  case 'marvel':
+    require('../sites/marvel/styles.scss')
+    break
+
+  default:
+    require('../sites/localhost/styles.scss')
+  }
+}

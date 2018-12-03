@@ -12,6 +12,10 @@ $componentName: $projectName+'-master';
   left: 210px;
   top: 100px;
   font-family: "Arial";
+
+  &::-webkit-scrollbar { 
+    display: none; 
+  }
 }
 
 ##{$componentName}-heading {
@@ -34,10 +38,6 @@ $componentName: $projectName+'-master';
 
 ##{$componentName}-description {
   padding: 5px;
-  
-  &::-webkit-scrollbar { 
-    display: none; 
-  }
 }
 
 ##{$componentName}-comics {

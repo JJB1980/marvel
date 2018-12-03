@@ -33,7 +33,7 @@ const config = {}
 app.get('*', function (req, res) {
   const host = req.hostname.split('.')[0]
   const {name} = config[host] || {name: 'test'}
-  console.log(host, name)
+
   res.render('index', {theme: site || host, environment, renderedHtml: '', name: name})
 })
 
