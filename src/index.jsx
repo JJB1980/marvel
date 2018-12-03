@@ -1,4 +1,3 @@
-
 // @flow
 
 import 'babel-polyfill'
@@ -11,7 +10,7 @@ import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
 
 import reducer from './reducers'
-import App from './components/App'
+import App from './master/App'
 import initialize from './initialise'
 import services from './services'
 

@@ -40,9 +40,9 @@ export class Header extends Component<Props> {
     }
 
     return <div id={`${componentName}`}>
-      <span id={`${componentName}-main`}>MARVEL</span>
-      <span id={`${componentName}-sub`}> Explorer</span>
-      <span id={`${componentName}-search`}>
+      <span id={`${componentName}__main`}>MARVEL</span>
+      <span id={`${componentName}__sub`}> Explorer</span>
+      <span id={`${componentName}__search`}>
         <MagnifyIcon/>
         <input value={searchTerm} onChange={update} placeholder='search...'/>
       </span>

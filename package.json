@@ -2,7 +2,10 @@
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --mode=development",
     "build": "rm -rf ./dist && ./node_modules/.bin/webpack --mode=production",
-    "test": "./node_modules/.bin/flow . && ./node_modules/.bin/eslint './**/*.js*' && ./node_modules/.bin/mocha './test/suite/**/*.spec.*'",
+    "test": "./node_modules/.bin/flow . && ./node_modules/.bin/eslint . && ./node_modules/.bin/mocha './test/suite/**/*.spec.*'",
+    "lint": "./node_modules/.bin/eslint .",
+    "flow": "./node_modules/.bin/flow .",
+    "mocha": "./node_modules/.bin/mocha ./test/suite/**/*.spec.*",
     "coverage": "./node_modules/.bin/nyc npm test",
     "start": "node ./server",
     "analyze": "ANALYZE=1 ./node_modules/.bin/webpack --mode=production"
@@ -16,12 +19,16 @@
     "globals": [
       "describe",
       "it",
-      "expect"
+      "expect",
+      "context",
+      "berfore",
+      "beforeEach"
     ]
   },
   "dependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",

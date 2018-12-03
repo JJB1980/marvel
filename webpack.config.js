@@ -36,7 +36,7 @@ module.exports = function (_, {mode}) {
 
   plugins.push(
     new MiniCssExtractPlugin({
-      filename: isProduction ? 'style.[hash].css' : 'style.css'
+      filename: isProduction ? 'assets/style.[hash].css' : 'style.css'
     })
   )
 
@@ -96,7 +96,7 @@ module.exports = function (_, {mode}) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: isProduction ? '[name].[chunkhash].js' : 'main.js'
+      filename: isProduction ? 'assets/[name].[chunkhash].js' : 'main.js'
     },
     module: {
       rules
