@@ -2,7 +2,7 @@
 
 $componentName: $projectName+'-master';
 
-##{$componentName}-detail {
+##{$componentName}__detail {
   width: 500px;
   color: white;
   background: transparent;
@@ -18,50 +18,31 @@ $componentName: $projectName+'-master';
   }
 }
 
-##{$componentName}-heading {
+##{$componentName}__heading {
   color: white;
   font-weight: bold;
   padding: 5px;
 }
 
-##{$componentName}-icon {
+##{$componentName}__icon {
   float: right;
   position: relative;
   top: -20px;
   margin: 5px;
 }
-##{$componentName}-icon img {
+##{$componentName}__icon img {
   border-radius: 40px;
   width: 80px;
   height: 80px;
 }
 
-##{$componentName}-description {
+##{$componentName}__description {
   padding: 5px;
 }
-
-##{$componentName}-comics {
-  padding: 5px;
-  width: 195px;
-  float: left;
-}
-##{$componentName}-comics span {
-  font-weight: bold;
-}
-
-##{$componentName}-series {
-  padding: 5px;
-  width: 195px;
-  float: left;
-}
-##{$componentName}-series span {
-  font-weight: bold;
-}
-
 
 /* somewhat responsive */
 @media all and (max-width: 550px) {
-  ##{$componentName}-detail {
+  ##{$componentName}__detail {
     position: relative;
     height: 45vh;
     width: 100%;

@@ -1,0 +1,13 @@
+@import '../globals.scss';
+
+$componentName: $projectName+'-list';
+
+.#{$componentName} {
+  padding: 5px;
+  width: 195px;
+  float: left;
+}
+
+.#{$componentName} span {
+  font-weight: bold;
+}

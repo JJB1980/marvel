@@ -13,7 +13,7 @@ $componentName: $projectName+'-heading';
   left: 0px;
   z-index: 99;
 }
-##{$componentName}-main {
+##{$componentName}__main {
   display: inline-block;
   background-color: red;
   color: white;
@@ -21,10 +21,10 @@ $componentName: $projectName+'-heading';
   margin-top: 27px;
   padding: 10px 5px 0px 5px;
 }
-##{$componentName}-sub {
+##{$componentName}__sub {
   display: inline-block;
 }
-##{$componentName}-search {
+##{$componentName}__search {
   margin-left: 20px;
 }
 #searchText {
@@ -84,10 +84,10 @@ $componentName: $projectName+'-heading';
   ##{$componentName} {
     width: 100%;
   }
-  ##{$componentName}-main {
+  ##{$componentName}__main {
     margin-left: 0px;
   }
-  ##{$componentName}-search {
+  ##{$componentName}__search {
     margin-left: 10px;
   }
   #searchText {

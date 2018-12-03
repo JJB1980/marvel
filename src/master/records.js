@@ -21,6 +21,8 @@ export const Character = new Record({
 export function loadResults (data) {
   const list = new List()
 
+  if (!data.data || !data.data.results) return list
+
   return data.data.results.reduce((results, result) => {
     return results.push(new Character({
       ...result,

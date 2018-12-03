@@ -11,7 +11,7 @@ import {projectName} from '../config'
 
 import './MasterList.scss'
 
-const componentName = `${projectName}-master-list`
+const componentName : string = `${projectName}-master-list`
 
 type Props = {
   results : List,

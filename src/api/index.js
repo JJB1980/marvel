@@ -1,6 +1,5 @@
 import 'universal-fetch'
 
-import path from 'path'
 import {ApiState} from './records'
 
 const NS = 'API_'
@@ -54,19 +53,37 @@ export function initialize () {
   }
 }
 
-export function fetchApi ({method = 'GET', api, data = {}, url = null}) {
-  return (dispatch, getState) => {
+const mocks = {
+  'default': {timeout: 0, result: {}, enabled: true}
+  // 'test': require('./somefile')
+}
+
+export function fetchApi ({method = 'GET', api = 'default', data = {}, url = null}) {
+  return (dispatch, getState, {window: {setTimeout}}) => {
     return new Promise(async (resolve, reject) => {
-      let apiUrl = url || path.resolve(getEndpoint(getState()), api)
+      let apiUrl = url || `${getEndpoint(getState())}${api}`
 
       dispatch(fetchStatus(STATUS_FETCHING))
 
-      const response = await fetch(apiUrl, {method, body: method !== 'GET' ? data : null})
-      const result = await response.json()
+      let timeout = 0
+      let result = {}
+      let enabled = true
+      if (!url) {
+        const mock = mocks[api]
+        result = mock.result
+        timeout = mock.timeout
+        enabled = mock.enabled
+      }
 
-      dispatch(fetchStatus(STATUS_FETCHED))
+      if (enabled) {
+        const response = await fetch(apiUrl, {method, body: method !== 'GET' ? data : null})
+        result = await response.json()
+      }
 
-      resolve(result)
+      setTimeout(() => {
+        resolve(result)
+        dispatch(fetchStatus(STATUS_FETCHED))
+      }, timeout)
     })
   }
 }

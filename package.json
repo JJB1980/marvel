@@ -19,12 +19,16 @@
     "globals": [
       "describe",
       "it",
-      "expect"
+      "expect",
+      "context",
+      "berfore",
+      "beforeEach"
     ]
   },
   "dependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",

@@ -59,23 +59,23 @@ export function theme (theme) {
 // selectors --------
 
 export function getResults (state) {
-  return state.components.results
+  return state.master.results
 }
 
 export function getSearch (state) {
-  return state.components.search
+  return state.master.search
 }
 
 export function getFetching (state) {
-  return state.components.fetching
+  return state.master.fetching
 }
 
 export function getCurrentId (state) {
-  return state.components.currentId
+  return state.master.currentId
 }
 
 export function getTheme (state) {
-  return state.components.theme
+  return state.master.theme
 }
 
 // thunks -----------
