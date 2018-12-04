@@ -19,9 +19,7 @@ type Props = {
   history : Object
 }
 
-export function MasterList (props : Props) {
-  const {results, currentId, history} : Props = props
-
+export function MasterList ({results, currentId, history} : Props) {
   const route = (id : string) => {
     currentId(id)
     history.push(`/character/${id}`)

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
@@ -21,30 +21,34 @@ type Props = {
   fetching : boolean
 }
 
-export class Header extends Component<Props> {
+export class Header extends React.Component<Props> {
   constructor (props : Props) {
     super(props)
+
+    const {newSearch, history, updateSearch} : Props = props
+
     const search : Function = (term : string) => {
-      props.history.push('/')
-      props.newSearch(term)
+      history.push('/')
+      newSearch(term)
     }
-    this.doSearch = debounce(search, 500)
+
+    const doSearch : Function = debounce(search, 700)
+
+    this.update = ({target: {value}} : {target: {value : string}}) => {
+      updateSearch(value)
+      doSearch(value)
+    }
   }
 
   render () {
-    const {searchTerm, updateSearch, fetching} : Props = this.props
-
-    const update : Function = (event : Object) => {
-      updateSearch(event.target.value)
-      this.doSearch(event.target.value)
-    }
+    const {searchTerm, fetching} : Props = this.props
 
     return <div id={`${componentName}`}>
       <span id={`${componentName}__main`}>MARVEL</span>
       <span id={`${componentName}__sub`}> Explorer</span>
       <span id={`${componentName}__search`}>
         <MagnifyIcon/>
-        <input value={searchTerm} onChange={update} placeholder='search...'/>
+        <input value={searchTerm} onChange={this.update} placeholder='search...'/>
       </span>
       {fetching && <div id='spinner'>
         <div className='bounce1'></div>

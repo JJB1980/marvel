@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {List} from 'immutable'
@@ -25,9 +24,7 @@ type Props = {
   fetching : boolean
 }
 
-export function MasterDetail (props : Props) {
-  const {results, match: {params: {id: currentId}}, fetching} : Props = props
-
+export function MasterDetail ({results, match: {params: {id: currentId}}, fetching} : Props) {
   if (currentId === undefined || fetching || results.size === 0) return null
 
   const character : Character = results.find(({id}) => id.toString() === currentId)
@@ -59,11 +56,7 @@ function mapStateToProps (state) {
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({}, dispatch)
-}
-
 export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(MasterDetail))
