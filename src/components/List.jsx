@@ -9,9 +9,12 @@ import './List.scss'
 
 const componentName : string = `${projectName}-list`
 
-export default (props : Object) => {
-  const {items, title} : {items : List, id: string, title : string} = props
+type Props = {
+  items : List,
+  title : string
+}
 
+export default ({items, title} : Props) => {
   if (!items || !items.size) return null
 
   return <div className={componentName}>
